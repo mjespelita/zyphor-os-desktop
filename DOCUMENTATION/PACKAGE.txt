@@ -5,19 +5,17 @@ Versioning Scheme
 vX.X.X-ux
 
 Required Changes
-- pkg/zor/DEBIAN/control
-- pkg/zor/DEBIAN/postinst
+- pkg/updater/zor/DEBIAN/control
+- pkg/updater/zor/DEBIAN/postinst
 
 [WITH DATES AND VERSIONS!]
 
-- pkg/zwn/DEBIAN/control
-- pkg/zwn/usr/share/zyphor-whats-new/release-notes.html
-- pkg/zcc/DEBIAN/control
-- pkg/zcc/usr/share/zyphor-command-center/ui/home.py
+- pkg/updater/zwn/DEBIAN/control
+- pkg/updater/zwn/usr/share/zyphor-whats-new/release-notes.html
 
 [END OF WITH DATES AND VERSIONS!]
 
-- pkg/updates/DEBIAN/control (if new default package was introduced).
+- pkg/updater/updates/DEBIAN/control (if new default package was introduced).
 
 =================================================
 List of Packages Develop Under the Zyphor Project
