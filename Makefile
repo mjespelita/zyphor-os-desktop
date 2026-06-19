@@ -7,40 +7,31 @@ status:
 
 add:
 	git add DOCUMENTATION/PACKAGE.txt
-	git commit -m "docs: update package documentation"
+	git add Makefile
+
+	git add pkg/zcc/DEBIAN/control
+
+	git add pkg/zcc/usr/share/zyphor-command-center/ui/home.py
+
+	git add pkg/updater/
+
+	git add pkg/zcc/usr/share/zyphor-command-center/__pycache__/
+	git add pkg/zcc/usr/share/zyphor-command-center/core/__pycache__/
+	git add pkg/zcc/usr/share/zyphor-command-center/ui/__pycache__/
+	git add pkg/zcc/usr/share/zyphor-command-center/ui/components/__pycache__/
+	git add pkg/zcc/usr/share/zyphor-command-center/ui/doctor/__pycache__/
+	git add pkg/zcc/usr/share/zyphor-command-center/ui/pkg/__pycache__/
+	git add pkg/zcc/usr/share/zyphor-command-center/ui/system/__pycache__/
+
+	git rm pkg/updates/DEBIAN/control
+	git rm pkg/zor/DEBIAN/control
+	git rm pkg/zor/DEBIAN/postinst
+	git rm pkg/zwn/DEBIAN/control
+	git rm pkg/zwn/DEBIAN/postinst
+	git rm pkg/zwn/usr/share/zyphor-whats-new/release-notes.html
 
 	git add Makefile
 	git commit -m "build: update repository build system"
-
-	git add -A zcc
-	git commit -m "refactor: remove legacy zyphor-command-center package"
-
-	git add -A zcli
-	git commit -m "refactor: remove legacy zyphor CLI package"
-
-	git add -A zor
-	git commit -m "refactor: remove legacy zyphor-os-release package"
-
-	git add -A zrc
-	git commit -m "refactor: remove legacy zyphor-repo-config package"
-
-	git add -A zwn
-	git commit -m "refactor: remove legacy zyphor-whats-new package"
-
-	git add -A zysh
-	git commit -m "refactor: remove legacy zysh package"
-
-	git add -A zylearn
-	git commit -m "refactor: remove legacy zylearn package"
-
-	git add -A zyshell
-	git commit -m "refactor: remove legacy zyshell package"
-
-	git add -A updates
-	git commit -m "refactor: remove legacy updates package"
-
-	git add pkg
-	git commit -m "feat: introduce unified pkg directory structure"
 
 push:
 	git push origin $(branch)
@@ -58,28 +49,21 @@ switch:
 
 release:
 
+	zyphor build package pkg/updater/zor
+	mv pkg/updater/zor.deb zyphor-os-release.deb
+
+	zyphor build package pkg/updater/zwn
+	mv pkg/updater/zwn.deb zyphor-whats-new.deb
+
+	zyphor build package pkg/updater/updates
+	mv pkg/updater/updates.deb zyphor-updates.deb
+
+# 	---
+
 	zyphor build package pkg/zcc
 	mv pkg/zcc.deb zyphor-command-center.deb
 
-	zyphor build package pkg/zor
-	mv pkg/zor.deb zyphor-os-release.deb
-
-	zyphor build package pkg/zrc
-	mv pkg/zrc.deb zyphor-repo-config.deb
-
-	zyphor build package pkg/zwn
-	mv pkg/zwn.deb zyphor-whats-new.deb
-
-	zyphor build package pkg/zylearn/zylearn
-	mv pkg/zylearn/zylearn.deb zylearn.deb
-
-	zyphor build package pkg/updates
-	mv pkg/updates.deb zyphor-updates.deb
-
-	zyphor build package pkg/zysh
-	mv pkg/zysh.deb zysh.deb
-
-# 	mv ./*.deb ../zyphor-os.github.io/pool/main/z --verbose
+	mv ./*.deb ../zyphor-os.github.io/pool/main/z --verbose
 
 # BUILD AUTOMATION
 
